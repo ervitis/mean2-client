@@ -32,10 +32,12 @@ export class AppComponent implements OnInit {
           if (this.identity._id) {
             this.userService.signup(this.user, true).subscribe(
                 res => {
-                  const token = res['token'] != null && res['token'].length > 0 ? res['token'] : null;
-                  if (! token) {
+                  this.token = res['token'] != null && res['token'].length > 0 ? res['token'] : null;
+                  if (! this.token) {
                     this.errMessage = 'Token not generated'
                   } else {
+                    localStorage.setItem('identity', JSON.stringify(this.identity));
+                    localStorage.setItem('token', this.token);
                     this.errMessage = null;
                   }
                 },
