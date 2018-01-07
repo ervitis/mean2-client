@@ -47,6 +47,7 @@ export class AppComponent implements OnInit {
                     localStorage.setItem('identity', JSON.stringify(this.identity));
                     localStorage.setItem('token', this.token);
                     this.alertMessage = null;
+                    this.user = new User();
                   }
                 },
                 error => {
