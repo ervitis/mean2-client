@@ -15,12 +15,15 @@ export class UserService {
         this.url = GLOBAL.url;
     }
 
+    protected static getHeaders() {
+        return new HttpHeaders({'Content-Type': 'application/json'});
+    }
+
     signup(userLogin, gethash = null) {
         userLogin.gethash = gethash != null ? gethash : null;
 
         const params = JSON.stringify(userLogin);
-
-        const headers = new HttpHeaders({'Content-Type': 'application/json'});
+        const headers = UserService.getHeaders();
 
         return this.http
             .post(this.url + '/user/login', params, {headers})
@@ -37,5 +40,14 @@ export class UserService {
         this.token = localStorage.getItem('token');
 
         return this.token;
+    }
+
+    register(userRegister) {
+        const params = JSON.stringify(userRegister);
+        const headers = UserService.getHeaders();
+
+        return this.http
+            .post(this.url + '/user/save', params, {headers})
+            .map(res => res);
     }
 }

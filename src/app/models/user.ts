@@ -5,6 +5,6 @@ export class User {
         public email: string = null,
         public password: string = null,
         public rol: string = 'ROLE_USER',
-        public image: string = null
+        public image: string = 'No image'
     ){}
 }

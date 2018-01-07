@@ -11,12 +11,14 @@ import {UserService} from './services/user.service';
 export class AppComponent implements OnInit {
   title = 'Musify';
   user: User;
+  userRegister: User;
   identity;
   token;
-  errMessage;
+  alertMessage;
 
   constructor(private userService: UserService) {
     this.user = new User();
+    this.userRegister = new User();
   }
 
   ngOnInit() {
@@ -40,27 +42,49 @@ export class AppComponent implements OnInit {
                 res => {
                   this.token = res['token'] != null && res['token'].length > 0 ? res['token'] : null;
                   if (! this.token) {
-                    this.errMessage = 'Token not generated'
+                    this.alertMessage = 'Token not generated'
                   } else {
                     localStorage.setItem('identity', JSON.stringify(this.identity));
                     localStorage.setItem('token', this.token);
-                    this.errMessage = null;
+                    this.alertMessage = null;
                   }
                 },
                 error => {
-                  this.errMessage = error.error.message;
+                  this.alertMessage = error.error.message;
                 }
             )
           } else {
-              this.errMessage = 'User not logged';
+              this.alertMessage = 'User not logged';
           }
         },
         error => {
           const errMessage = <any>error;
 
           if (errMessage != null) {
-            this.errMessage = error.error.message;
+            this.alertMessage = error.error.message;
             console.log(error)
+          }
+        }
+    )
+  }
+
+  onSubmitRegister() {
+    this.userService.register(this.userRegister).subscribe(
+        res => {
+          this.userRegister = res['user'] != null ? res['user'] : null;
+
+          if (! this.userRegister) {
+            this.alertMessage = 'Error registering user';
+          } else {
+            this.alertMessage = 'User registered with ' + this.userRegister.email;
+            this.userRegister = new User();
+          }
+        },
+        error => {
+          const errMessage = <any>error;
+
+          if (errMessage) {
+            this.alertMessage = error.error.message;
           }
         }
     )

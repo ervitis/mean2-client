@@ -23,9 +23,9 @@
 <div class="row" *ngIf="! identity">
   <div class="col col-xs-6">
     <p>Log In</p>
-    <div *ngIf="errMessage">
+    <div *ngIf="alertMessage">
       <div class="alert alert-info">
-        <strong>Error</strong> {{errMessage}}
+        {{alertMessage}}
       </div>
     </div>
     <div class="row">
@@ -49,18 +49,18 @@
   <div class="col col-xs-6">
     <p>Sign In</p>
     <div class="row">
-      <form class="col-md-10">
+      <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col-md-10">
         <label>Name</label>
-        <input type="text" class="form-control" required>
+        <input type="text" #name="ngModel" name="name" [(ngModel)]="userRegister.name" class="form-control" required>
 
         <label>Surname</label>
-        <input type="text" class="form-control" required>
+        <input type="text" #name="ngModel" name="surname" [(ngModel)]="userRegister.surname" class="form-control" required>
 
         <label>Email</label>
-        <input type="email" class="form-control" required>
+        <input type="email" #name="ngModel" name="email" [(ngModel)]="userRegister.email" class="form-control" required>
 
         <label>Password</label>
-        <input type="password" class="form-control" required>
+        <input type="password" #name="ngModel" name="passsword" [(ngModel)]="userRegister.password" class="form-control" required>
 
         <input type="submit" class="btn btn-primary" value="Sign In">
       </form>
