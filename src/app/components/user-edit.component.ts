@@ -23,7 +23,10 @@ export class UserEditComponent implements OnInit {
             this.identity._id,
             this.identity.name,
             this.identity.surname,
-            this.identity.email
+            this.identity.email,
+            this.identity.password,
+            this.identity.rol,
+            this.identity.image
         )
     }
 
@@ -39,7 +42,7 @@ export class UserEditComponent implements OnInit {
                 if (! this.user) {
                     this.alertMessage = 'User not updated'
                 } else {
-                    localStorage.setItem('identity', JSON.stringify(this.user))
+                    localStorage.setItem('identity', JSON.stringify(this.user));
                     this.alertMessage = 'User data updated'
                 }
             },
