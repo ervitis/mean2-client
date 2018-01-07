@@ -24,9 +24,13 @@ export class AppComponent implements OnInit {
     this.token = this.userService.getToken();
   }
 
-  public onSubmit() {
-    console.log(this.user);
+  logout() {
+    localStorage.clear();
 
+    this.identity = this.token = null;
+  }
+
+  public onSubmit() {
     this.userService.signup(this.user).subscribe(
         res => {
           this.identity = res['user'];

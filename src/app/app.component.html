@@ -1,6 +1,16 @@
 <div class="row">
   <div class="navigation col col-xs-2">
     <h1>{{title}}</h1>
+
+    <div *ngIf="identity">
+      <span>
+        {{identity.name}} {{identity.surname}}
+      </span>
+
+      <span class="btn btn-warning" (click)="logout()">
+        Log out
+      </span>
+    </div>
   </div>
 
   <div class="clearfix"></div>
