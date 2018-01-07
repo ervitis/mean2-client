@@ -8,6 +8,8 @@ import {GLOBAL} from './global';
 @Injectable()
 export class UserService {
     public url: string;
+    private identity;
+    private token;
 
     constructor(private http: HttpClient) {
         this.url = GLOBAL.url;
@@ -23,5 +25,17 @@ export class UserService {
         return this.http
             .post(this.url + '/user/login', params, {headers})
             .map(res => res);
+    }
+
+    getIdentity() {
+        this.identity = JSON.parse(localStorage.getItem('identity'));
+
+        return this.identity;
+    }
+
+    getToken() {
+        this.token = localStorage.getItem('token');
+
+        return this.token;
     }
 }
