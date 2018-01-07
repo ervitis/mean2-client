@@ -1,3 +1,59 @@
-<h1>
-  {{title}}
-</h1>
+<div class="row">
+  <div class="navigation col col-xs-2">
+    <h1>{{title}}</h1>
+  </div>
+
+  <div class="clearfix"></div>
+
+  <div *ngIf="identity" class="central col col-xs-10">
+    <p>Logged</p>
+  </div>
+</div>
+
+<div class="row" *ngIf="! identity">
+  <div class="col col-xs-6">
+    <p>Log In</p>
+    <div *ngIf="errMessage">
+      <div class="alert alert-info">
+        <strong>Error</strong> {{errMessage}}
+      </div>
+    </div>
+    <div class="row">
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-10">
+        <p>
+          <label>Email</label>
+          <input #email="ngModel" name="email" [(ngModel)]="user.email" type="text" class="form-control" required>
+          <span class="alert alert-danger" *ngIf="! email.valid && email.touched">Required</span>
+        </p>
+
+        <p>
+          <label>Password</label>
+          <input #password="ngModel" name="password" [(ngModel)]="user.password" type="password" class="form-control" required>
+          <span class="alert alert-danger" *ngIf="! password.valid && password.touched">Required</span>
+        </p>
+
+        <input type="submit" class="btn btn-primary" value="Log In">
+      </form>
+    </div>
+  </div>
+  <div class="col col-xs-6">
+    <p>Sign In</p>
+    <div class="row">
+      <form class="col-md-10">
+        <label>Name</label>
+        <input type="text" class="form-control" required>
+
+        <label>Surname</label>
+        <input type="text" class="form-control" required>
+
+        <label>Email</label>
+        <input type="email" class="form-control" required>
+
+        <label>Password</label>
+        <input type="password" class="form-control" required>
+
+        <input type="submit" class="btn btn-primary" value="Sign In">
+      </form>
+    </div>
+  </div>
+</div>
