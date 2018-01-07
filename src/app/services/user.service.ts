@@ -50,4 +50,13 @@ export class UserService {
             .post(this.url + '/user/save', params, {headers})
             .map(res => res);
     }
+
+    updateUser(user) {
+        const params = JSON.stringify(user);
+        const headers = UserService.getHeaders().append('Authorization', this.getToken());
+
+        return this.http
+            .put(this.url + '/user/update/' + user._id, params, {headers})
+            .map(res => res);
+    }
 }

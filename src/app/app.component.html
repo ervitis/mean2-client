@@ -1,15 +1,25 @@
 <div class="row">
   <div class="navigation col col-xs-2">
     <h1>{{title}}</h1>
-
     <div *ngIf="identity">
-      <span>
-        {{identity.name}} {{identity.surname}}
-      </span>
+      <nav id="navigation">
+        <ul>
+          <li><span aria-hidden="true">Search</span></li>
+          <li><span aria-hidden="true">Artists</span></li>
+          <li><span aria-hidden="true">Albums</span></li>
+        </ul>
 
-      <span class="btn btn-warning" (click)="logout()">
-        Log out
-      </span>
+      </nav>
+
+      <nav>
+        <span>
+          {{identity.name}}
+        </span>
+
+        <span class="btn btn-warning" (click)="logout()">
+          Log out
+        </span>
+      </nav>
     </div>
   </div>
 
