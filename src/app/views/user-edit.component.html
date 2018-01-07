@@ -1,5 +1,30 @@
+<hr>
+
 <div class="row" *ngIf="identity">
-    <div class="col-sm-6">
+    <div class="col-md-12">
         {{titulo}}
+    </div>
+
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="alert alert-info" *ngIf="alertMessage">
+                {{alertMessage}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <form #userUpdateForm="ngForm" (ngSubmit)="onSubmit()" class="col col-md-12">
+            <label>Name</label>
+            <input type="text" #name="ngModel" name="name" [(ngModel)]="user.name" class="form-control" required>
+
+            <label>Surname</label>
+            <input type="text" #name="ngModel" name="surname" [(ngModel)]="user.surname" class="form-control" required>
+
+            <label>Email</label>
+            <input type="email" #name="ngModel" name="email" [(ngModel)]="user.email" class="form-control" required>
+
+            <input type="submit" class="btn btn-primary" value="Update">
+        </form>
     </div>
 </div>

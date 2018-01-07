@@ -12,9 +12,9 @@
       </nav>
 
       <nav>
-        <span>
-          {{identity.name}}
-        </span>
+        <a [routerLink]="['/user/data']">
+          My data
+        </a>
 
         <span class="btn btn-warning" (click)="logout()">
           Log out
@@ -27,6 +27,7 @@
 
   <div *ngIf="identity" class="central col col-xs-10">
     <p>Logged</p>
+    <router-outlet></router-outlet>
   </div>
 </div>
 

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import {UserEditComponent} from './components/user-edit.component';
+import {appRoutingProviders, routing} from './app.routing';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import {UserEditComponent} from './components/user-edit.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    routing
   ],
-  providers: [],
+  providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
