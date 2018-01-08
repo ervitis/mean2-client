@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import {UserEditComponent} from './components/user-edit.component';
 import {ArtistListComponent} from './components/artist-list.component';
 import {appRoutingProviders, routing} from './app.routing';
+import {HomeComponent} from './components/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserEditComponent,
-    ArtistListComponent
+    ArtistListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
