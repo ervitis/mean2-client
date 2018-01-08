@@ -4,11 +4,13 @@ import {RouterModule, Routes} from '@angular/router';
 import {UserEditComponent} from './components/user-edit.component';
 import {ArtistListComponent} from './components/artist-list.component';
 import {HomeComponent} from './components/home.component';
+import {ArtistAddComponent} from './components/artist-add.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'user/data', component: UserEditComponent},
     {path: 'artists/:page', component: ArtistListComponent},
+    {path: 'artist/create', component: ArtistAddComponent},
     {path: '**', component: HomeComponent}
 ];
 

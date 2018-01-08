@@ -1,5 +1,5 @@
 <div *ngIf="identity" class="head-page">
     <h1>{{titulo}}</h1>
 
-    <a class="btn btn-primary" *ngIf="identity.rol == 'ROLE_ADMIN'">Add artist</a>
+    <a [routerLink]="['/artist/create']" class="btn btn-primary" *ngIf="identity.rol == 'ROLE_ADMIN'">Add artist</a>
 </div>

@@ -1,7 +1,7 @@
 export class Artist {
     constructor(
-        public name: string,
-        public description: string,
-        public image: string
+        public name: string = null,
+        public description: string = null,
+        public image: string = 'No image'
     ){}
 }
