@@ -19,7 +19,7 @@
         </p>
 
         <div *ngIf="isEdit">
-            <div class="imageForEdit" *ngIf="artist.image != 'No image'">
+            <div class="imageForEdit" *ngIf="artist.image && artist.image != 'No image'">
                 <img src="{{url + 'artist/image/' + artist.image}}">
             </div>
 
