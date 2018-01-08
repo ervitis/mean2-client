@@ -19,6 +19,7 @@ export class UserEditComponent implements OnInit {
     public token;
     public alertMessage;
     public filesToUpload: Array<File>;
+    public url = GLOBAL.url;
 
     constructor(private userService: UserService) {
         this.titulo = 'Update user data';
@@ -52,7 +53,7 @@ export class UserEditComponent implements OnInit {
 
                     if (this.filesToUpload) {
                         this.makeFileRequest(
-                            GLOBAL.url + 'user/photo/' + this.user._id,
+                            this.url + 'user/photo/' + this.user._id,
                             [],
                             this.filesToUpload
                         ).then((result: any) => {

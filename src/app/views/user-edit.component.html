@@ -25,7 +25,7 @@
             <input type="email" #name="ngModel" name="email" [(ngModel)]="user.email" class="form-control" required>
 
             <div class="userImage" *ngIf="user.image && user.image != 'No image'">
-                <img src="">
+                <img src="{{url + 'user/photo/' + user.image}}">
             </div>
 
             <label>Update your photo</label>
