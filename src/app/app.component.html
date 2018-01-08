@@ -1,6 +1,6 @@
 <div class="row">
   <div class="navigation col-lg-2">
-    <h1>{{title}}</h1>
+    <a [routerLink]="['/']"><h1>{{title}}</h1></a>
     <div *ngIf="identity">
       <nav id="navigation">
         <ul>
@@ -25,7 +25,7 @@
 
   <div class="clearfix"></div>
 
-  <div [class.hidden]="!identity" class="central col-lg-10">
+  <div [class.hidden]="! identity" class="central col-lg-10">
     <p>Logged</p>
     <div class="row">
       <div class="col-md-10">

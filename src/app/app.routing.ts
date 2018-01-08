@@ -8,8 +8,8 @@ import {HomeComponent} from './components/home.component';
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'user/data', component: UserEditComponent},
-    {path: '**', component: HomeComponent},
     {path: 'artists/:page', component: ArtistListComponent},
+    {path: '**', component: HomeComponent}
 ];
 
 export const appRoutingProviders: any[] = [];
