@@ -59,4 +59,27 @@ export class ArtistEditComponent implements OnInit {
             )
         })
     }
+
+    onSubmit() {
+        this.route.params.forEach((params: Params) => {
+            const id = params['id'];
+
+            this.artistService.updateArtist(this.token, id, this.artist).subscribe(
+                res => {
+                    this.artist = res['artistUpdate'] != null ? res['artistUpdate'] : null;
+                    if (! this.artist) {
+                        this.alertMessage = 'Error updating'
+                    } else {
+                        this.alertMessage = this.artist.name + ' updated';
+                    }
+                }, err => {
+                    const errorMesssage = <any>err;
+                    if (errorMesssage) {
+                        const body = JSON.parse(err._body);
+
+                        console.log(err);
+                    }
+                });
+        });
+    }
 }
