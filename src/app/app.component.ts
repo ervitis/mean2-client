@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "./models/user";
 import {UserService} from './services/user.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,11 @@ export class AppComponent implements OnInit {
   token;
   alertMessage;
 
-  constructor(private userService: UserService) {
+  constructor(
+      private userService: UserService,
+      private route: ActivatedRoute,
+      private router: Router
+  ) {
     this.user = new User();
     this.userRegister = new User();
   }
@@ -30,6 +35,8 @@ export class AppComponent implements OnInit {
     localStorage.clear();
 
     this.identity = this.token = null;
+
+    this.router.navigate(['/']);
   }
 
   public onSubmit() {
