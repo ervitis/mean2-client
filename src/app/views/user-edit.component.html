@@ -24,6 +24,13 @@
             <label>Email</label>
             <input type="email" #name="ngModel" name="email" [(ngModel)]="user.email" class="form-control" required>
 
+            <div class="userImage" *ngIf="user.image && user.image != 'No image'">
+                <img src="">
+            </div>
+
+            <label>Update your photo</label>
+            <input type="file" placeholder="Upload an image" (change)="fileUploadEvent($event)"><br>
+
             <input type="submit" class="btn btn-primary" value="Update">
         </form>
     </div>
