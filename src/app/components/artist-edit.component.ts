@@ -75,18 +75,22 @@ export class ArtistEditComponent implements OnInit {
                         this.alertMessage = 'Error updating'
                     } else {
                         this.alertMessage = this.artist.name + ' updated';
-                        this.uploadService.makeFileRequest(
-                            this.url + 'artist/image/' + id,
-                            [],
-                            this.filesToUpload,
-                            this.token,
-                            'image'
-                        ).then((result) => {
-                            console.log(result);
+                        if (this.filesToUpload) {
+                            this.uploadService.makeFileRequest(
+                                this.url + 'artist/image/' + id,
+                                [],
+                                this.filesToUpload,
+                                this.token,
+                                'image'
+                            ).then(result => {
+                                this.router.navigate(['/artists', 1])
+                            }, error => {
+                                console.log(error);
+                            });
+                        } else {
                             this.router.navigate(['/artists', 1])
-                        }).catch((err) => {
-                            console.log(err);
-                        })
+                        }
+
                     }
                 }, err => {
                     const errorMesssage = <any>err;

@@ -45,7 +45,7 @@ export class ArtistAddComponent implements OnInit {
                     this.alertMessage = 'Error saving artist data';
                 } else {
                     this.alertMessage = 'Artist saved';
-                    //this.router.navigate(['/artista/edit'], this.artist._id);
+                    this.router.navigate(['/artista/edit'], res['artistStored']['_id']);
                 }
             }, error => {
                 const errorMessage = <any>error;
