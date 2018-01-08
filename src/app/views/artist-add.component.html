@@ -18,6 +18,17 @@
             <input class="form-control" type="text" #description="ngModel" name="description" [(ngModel)]="artist.description" required>
         </p>
 
+        <div *ngIf="isEdit">
+            <div class="imageForEdit" *ngIf="artist.image != 'No image'">
+                <img src="{{url + 'artist/image/' + artist.image}}">
+            </div>
+
+            <p>
+                <label>Upload an image</label>
+                <input type="file" (change)="fileUploadEvent($event)">
+            </p>
+        </div>
+
         <p>
             <input type="submit" value="Create artist" class="btn btn-lg btn-primary" [disabled]="! formArtist.form.valid">
         </p>
