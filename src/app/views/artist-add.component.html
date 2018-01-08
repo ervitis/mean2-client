@@ -1,6 +1,10 @@
 <div>
     <h1>{{titulo}}</h1>
 
+    <div class="alert alert-info" *ngIf="alertMessage">
+        {{alertMessage}}
+    </div>
+
     <form #formArtist="ngForm" (ngSubmit)="onSubmit()">
         <p>
             <span class="alert alert-danger" *ngIf="! name.valid && name.touched">Name is not valid</span>
