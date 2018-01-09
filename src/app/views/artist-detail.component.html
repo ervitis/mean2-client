@@ -1,4 +1,22 @@
 <div class="artist-box" *ngIf="artist">
-    <h2>{{artist.name}}</h2>
+    <div id="artist-head-card">
+        <h2>{{artist.name}}</h2>
+        
+        <div class="image">
+            <img src="{{url + 'artist/image/' + artist.image}}" width="200px" height="200px">
+        </div>
+
+        <div class="data-artist">
+            <p class="description">{{artist.description}}</p>
+
+            <a *ngIf="identity.rol == 'ROLE_ADMIN'" href="#" class="btn btn-primary">Add album</a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div id="gallery-albums" *ngIf="albums">
+
+        </div>
+    </div>
 
 </div>
