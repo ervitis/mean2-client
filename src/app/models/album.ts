@@ -1,9 +1,10 @@
 export class Album {
     constructor(
-        public title: string,
-        public description: string,
-        public image: string,
-        public year: number,
-        public artist: string
+        public _id: string = null,
+        public title: string = null,
+        public description: string = null,
+        public image: string = 'No image',
+        public year: number = 0,
+        public artist: string = null
     ){}
 }

@@ -1,0 +1,44 @@
+<div *ngIf="identity && identity.rol == 'ROLE_ADMIN'">
+    <h1>{{titulo}}</h1>
+
+    <div class="alert alert-info" *ngIf="alertMessage">
+        {{alertMessage}}
+    </div>
+
+    <form #formAddAlbum="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+            <span class="alert alert-danger" *ngIf="! title.valid && title.touched">Title is not valid</span>
+            <label>Title</label>
+            <input class="form-control" type="text" #title="ngModel" name="title" [(ngModel)]="album.title" required>
+        </p>
+
+        <p>
+            <span class="alert alert-danger" *ngIf="! description.valid && description.touched">Description is not valid</span>
+            <label>Description</label>
+            <input class="form-control" type="text" #description="ngModel" name="description" [(ngModel)]="album.description" required>
+        </p>
+
+        <p>
+            <span class="alert alert-danger" *ngIf="! year.valid && year.touched">Year is not valid</span>
+            <label>Year</label>
+            <input class="form-control" type="text" #year="ngModel" name="year" [(ngModel)]="album.year" required>
+        </p>
+
+        <div class="imageForEdit" *ngIf="album.image && album.image != 'No image'">
+            <img src="{{url + 'artist/image/' + album.image}}">
+        </div>
+
+        <p>
+            <label>Upload an image</label>
+            <input type="file" (change)="fileUploadEvent($event)">
+        </p>
+
+        <p>
+            <input type="submit" value="Create album" class="btn btn-lg btn-primary" [disabled]="! formAddAlbum.form.valid">
+        </p>
+    </form>
+</div>
+
+<div *ngIf="! identity || identity.rol != 'ROLE_ADMIN'">
+    <h1>No tienes acceso aquí</h1>
+</div>
