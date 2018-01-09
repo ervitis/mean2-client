@@ -9,7 +9,7 @@ const HTTP_OK = 200;
 export class UploadService {
     public url: string;
 
-    constructor(private http: HttpClient) {
+    constructor() {
         this.url = GLOBAL.url;
     }
 

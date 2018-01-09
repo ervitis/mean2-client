@@ -20,6 +20,7 @@ export class ArtistListComponent implements OnInit {
     public url;
     public nextPage;
     public prevPage;
+    public totalItems;
 
     constructor(
         private route: ActivatedRoute,
@@ -40,7 +41,7 @@ export class ArtistListComponent implements OnInit {
 
     getArtists() {
         this.route.params.forEach((params: Params) => {
-            let page = <number>params['page'];
+            let page = parseInt(params['page']);
 
             if (! page) {
                 page = 1
@@ -59,6 +60,7 @@ export class ArtistListComponent implements OnInit {
                     if (! this.artists) {
                         this.router.navigate(['/'])
                     }
+                    this.totalItems = parseInt(resp['totalItems']);
                 },
                 error => {
                     const errorMessage = <any>error;

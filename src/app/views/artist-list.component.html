@@ -2,12 +2,21 @@
     <h1>{{titulo}}</h1>
 
     <a [routerLink]="['/artist/create']" class="btn btn-primary" *ngIf="identity.rol == 'ROLE_ADMIN'">Add artist</a>
+
+    <ul class="pagination">
+        <li class="btn btn-sm"><a [routerLink]="['/artists', prevPage]">&laquo;</a></li>
+        <li class="btn btn-sm"><a [routerLink]="['/artists', nextPage]">&raquo;</a></li>
+    </ul>
+
 </div>
 
 <div class="clearfix"></div>
 
 <ul class="artists-list" *ngIf="identity">
     <li *ngFor="let artist of artists" class="col-lg-3 artist-item">
-        {{artist.name}}
+        <a [routerLink]="['/artist/edit/', artist._id]">{{artist.name}}</a>
+        <div class="artist-image">
+            <img src="{{url + 'artist/image/' + artist.image}}" width="150px" height="150px">
+        </div>
     </li>
 </ul>
