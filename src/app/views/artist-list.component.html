@@ -14,7 +14,9 @@
 
 <ul class="artists-list" *ngIf="identity">
     <li *ngFor="let artist of artists" class="col-lg-3 artist-item">
-        <a [routerLink]="['/artist/edit/', artist._id]">{{artist.name}}</a>
+        <a [routerLink]="['/artist/detail/', artist._id]">{{artist.name}}</a>
+        <a class="btn btn-sm btn-primary" [routerLink]="['/artist/edit/', artist._id]">Edit</a>
+        <a class="btn btn-sm btn-danger" (click)="delete(artist._id)">Delete</a>
         <div class="artist-image">
             <img src="{{url + 'artist/image/' + artist.image}}" width="150px" height="150px">
         </div>

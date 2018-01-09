@@ -106,4 +106,8 @@ export class ArtistEditComponent implements OnInit {
     fileUploadEvent(fileInput: any) {
         this.filesToUpload = <Array<File>>fileInput.target.files;
     }
+
+    deleteArtist(id) {
+
+    }
 }
