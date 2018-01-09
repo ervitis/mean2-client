@@ -1,5 +1,7 @@
 <div *ngIf="identity && identity.rol == 'ROLE_ADMIN'">
-    <h1>{{titulo}}</h1>
+    <h1>
+        {{titulo}} <span *ngIf="artist"> {{artist.name}}</span>
+    </h1>
 
     <div class="alert alert-info" *ngIf="alertMessage">
         {{alertMessage}}
