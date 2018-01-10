@@ -43,4 +43,19 @@ export class AlbumService {
         return this.http.put(this.url + 'album/' + id, params, {headers})
             .map(res => res);
     }
+
+    getAlbums(token, artistId = null) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        if (artistId) {
+            return this.http.get(this.url + 'album/' + artistId, {headers})
+                .map(res => res);
+        } else {
+            return this.http.get(this.url + 'album', {headers})
+                .map(res => res);
+        }
+    }
 }
