@@ -32,4 +32,15 @@ export class AlbumService {
         return this.http.get(this.url + 'album/' + albumId, {headers})
             .map(res => res);
     }
+
+    editAlbum(token, id, album: Album) {
+        const params = JSON.stringify(album);
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        return this.http.put(this.url + 'album/' + id, params, {headers})
+            .map(res => res);
+    }
 }

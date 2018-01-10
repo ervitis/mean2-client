@@ -21,6 +21,7 @@ export class AlbumEditComponent implements OnInit {
     public url: string;
     public alertMessage;
     public isEdit;
+    private albumId;
 
     constructor(
         private route: ActivatedRoute,
@@ -38,9 +39,9 @@ export class AlbumEditComponent implements OnInit {
 
     ngOnInit() {
         this.route.params.forEach((params: Params) => {
-            const albumId = params['id'];
+            this.albumId = params['id'];
 
-            this.albumService.getAlbum(this.token, albumId).subscribe(
+            this.albumService.getAlbum(this.token, this.albumId).subscribe(
                 res => {
                     this.album = res['album'] != null ? res['album'] : null;
 
@@ -56,6 +57,23 @@ export class AlbumEditComponent implements OnInit {
                 }
             )
         });
+    }
+
+    onSubmit() {
+        this.albumService.editAlbum(this.token, this.albumId, this.album).subscribe(
+            res => {
+                this.album = res['albumUpdate'] != null ? res['albumUpdate'] : null;
+                if (! this.album) {
+                    this.alertMessage = 'Error updating'
+                } else {
+                    this.alertMessage = null;
+                    this.router.navigate(['/album'], this.albumId);
+                }
+            }, err => {
+                this.alertMessage = err._body.message;
+                console.log(err);
+            }
+        )
     }
 
     fileUploadEvent() {
