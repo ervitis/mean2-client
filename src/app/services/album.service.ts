@@ -22,4 +22,14 @@ export class AlbumService {
         return this.http.post(this.url + 'album/save', params,{headers})
             .map(res => res);
     }
+
+    getAlbum(token, albumId) {
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        return this.http.get(this.url + 'album/' + albumId, {headers})
+            .map(res => res);
+    }
 }

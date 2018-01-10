@@ -21,6 +21,7 @@ export class AlbumAddComponent implements OnInit {
     public album: Album;
     public artist: Artist;
     public alertMessage: string;
+    public isEdit;
 
     constructor(
         private route: ActivatedRoute,
@@ -38,6 +39,7 @@ export class AlbumAddComponent implements OnInit {
         this.url = GLOBAL.url;
         this.album = new Album();
         this.titulo = 'Add album to artist';
+        this.isEdit = false;
     }
 
     ngOnInit() {
