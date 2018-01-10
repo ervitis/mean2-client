@@ -5,11 +5,12 @@ import {Artist} from '../models/artist';
 import {Album} from '../models/album';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {GLOBAL} from '../services/global';
+import {UploadService} from '../services/upload.service';
 
 @Component({
     selector: 'album-edit',
     templateUrl: '../views/album-add.component.html',
-    providers: [UserService, AlbumService]
+    providers: [UserService, AlbumService, UploadService]
 })
 
 export class AlbumEditComponent implements OnInit {
@@ -27,7 +28,8 @@ export class AlbumEditComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private userService: UserService,
-        private albumService: AlbumService
+        private albumService: AlbumService,
+        private uploadService: UploadService
     ) {
         this.titulo = 'Edit an album';
         this.url = GLOBAL.url;
@@ -51,8 +53,7 @@ export class AlbumEditComponent implements OnInit {
                         this.alertMessage = null;
                     }
                 }, err => {
-                    const errMessage = <any>err;
-                    this.alertMessage = err._body.message;
+                    this.alertMessage = JSON.parse(err._body).message;
                     console.log(err);
                 }
             )
@@ -67,16 +68,37 @@ export class AlbumEditComponent implements OnInit {
                     this.alertMessage = 'Error updating'
                 } else {
                     this.alertMessage = null;
-                    this.router.navigate(['/album'], this.albumId);
+
+                    console.log(this.album);
+
+                    this.uploadPicture(
+                        this.url + 'album/image/' + this.albumId,
+                        this.filesToUpload,
+                        this.token,
+                        '/album/edit/' + this.albumId
+                    );
                 }
             }, err => {
-                this.alertMessage = err._body.message;
+                this.alertMessage = JSON.parse(err._body).message;
                 console.log(err);
             }
         )
     }
 
-    fileUploadEvent() {
+    uploadPicture(url, filesToUpload, token, route) {
+        this.uploadService
+            .makeFileRequest(url, [], filesToUpload, token, 'image')
+            .then(resolve => {
+                console.log(route);
+                this.router.navigate([route]);
+            }).catch(error => {
+                console.log(error);
+            });
+    }
 
+    public filesToUpload: Array<File>;
+
+    fileUploadEvent(fileInput: any) {
+        this.filesToUpload = <Array<File>>fileInput.target.files;
     }
 }

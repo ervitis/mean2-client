@@ -27,7 +27,7 @@
         </p>
 
         <div class="imageForEdit" *ngIf="album.image && album.image != 'No image'">
-            <img src="{{url + 'album/image/' + album.image}}">
+            <img src="{{url + 'album/image/' + album.image}}" width="200px" height="200px">
         </div>
 
         <div *ngIf="isEdit && isEdit == true">
